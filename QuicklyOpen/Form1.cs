@@ -106,9 +106,12 @@ namespace QuicklyOpen
             path = Selselection() ?? path;//加判断防止打开选择路径对话框，未选择路径，而导致之前选择的路径被空值覆盖
             //path1 = @path1.Replace(@"\", "/"); //加@防止字符串中的转义字符被处理；替换字符串中的字符。
             path = (path != null) ? @path.Replace(@"\", "/") : null;//加判断防止path1为空时报错
-            string[] filename0 = @path.Split('/'); //将字符串按‘/’分割成数组
-            filename = filename0[filename0.Length - 1]; //取数组的最后一位
-            button.Text = hotkey + filename;
+            if (path!=null)
+            {
+                string[] filename0 = @path.Split('/'); //将字符串按‘/’分割成数组
+                filename = filename0[filename0.Length - 1]; //取数组的最后一位
+                button.Text = hotkey + filename;
+            }
             return filename;
         }
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -181,6 +184,83 @@ namespace QuicklyOpen
         {
             filename12 = PathSetting(path12, filename12, button12, "Ⓒ");
             path12 = path;
+        }
+        #endregion
+
+        #region 鼠标移动到按钮上时，预览已经设置好的路径
+        ToolTip toolTip;
+        private void Preview(ToolTip toolTip, string pormpt, Button button)
+        {
+            // 创建the ToolTip 
+            toolTip = new ToolTip();
+
+            // 设置显示样式
+            toolTip.AutoPopDelay = 10000;//提示信息的可见时间
+            toolTip.InitialDelay = 500;//事件触发多久后出现提示
+            toolTip.ReshowDelay = 500;//指针从一个控件移向另一个控件时，经过多久才会显示下一个提示框
+            toolTip.ShowAlways = true;//是否显示提示框
+
+            //  设置伴随的对象.
+            toolTip.SetToolTip(button, pormpt);//设置提示按钮和提示内容
+        }
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path1, button1);
+        }
+
+        private void button2_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path2, button2);
+        }
+
+        private void button3_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path3, button3);
+        }
+
+        private void button4_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path4, button4);
+        }
+
+        private void button5_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path5, button5);
+        }
+
+        private void button6_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path6, button6);
+        }
+
+        private void button7_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path7, button7);
+        }
+
+        private void button8_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path8, button8);
+        }
+
+        private void button9_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path9, button9);
+        }
+
+        private void button10_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path10, button10);
+        }
+
+        private void button11_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path11, button11);
+        }
+
+        private void button12_MouseEnter(object sender, EventArgs e)
+        {
+            Preview(toolTip, path12, button12);
         }
         #endregion
 
